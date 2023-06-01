@@ -1,0 +1,17 @@
+.formContainer{
+    background-color: lightblue;
+    padding: 20px;
+}
+
+.formControl{
+    padding: 8px;
+}
+
+.formControl label{
+    font-weight: bold;
+
+}
+
+.button{
+    background-color: green;
+}

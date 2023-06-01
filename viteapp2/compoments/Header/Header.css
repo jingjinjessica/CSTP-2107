@@ -1,0 +1,25 @@
+/* Here I am directly tarfetting a html element*/
+/* header{
+    background-color: black;
+} */
+
+.headerContainer{
+    background-color: greenyellow;
+}
+.navContainer{
+    margin:0;
+    list-style-type: none;
+    display: flex;
+    gap:20px;
+    padding: 20px;
+    justify-content: flex-end;
+}
+.navItem{
+    background-color: black;
+    color:white;
+    padding: 10px 20px;
+}
+.navItem:hover{
+    background-color: maroon;
+    cursor: pointer;
+}
