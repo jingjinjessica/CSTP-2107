@@ -1,32 +1,23 @@
 import { useEffect, useState } from 'react';
-import {useRoutes} from 'react-router-dom';
-import PhotoList from './components/PhotoList';
-import  PhotoContext from './context/PhotoContext';
-import './App.css'
+import './App.css';
+import PhotoContext from './context/PhotoContext';
+import{BrowserRouter as Router, Routes,Route} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import FavoritePage from './pages/FavoritePage';
+import Nav from './components/Nav';
 
 function App() {
-  // let element = useRoutes([
-  //   {
-  //     path:'/',
-  //     element:<HomePage/>
-  //   },
-  //   {
-  //     path:'/Favorite',
-  //     element:<FavoritePage/>
-  //   }
-  // ])
-  
   const CLIENT_SECRET = `h-wHyPBeHzum1NAUJ2Ce8IEIQX_0IrJ-aGKBOmrLAfQ`;
   const [photosData, setPhotosData] = useState([]);
 
   useEffect(() => {
-    getPhotoFromSplash();
-  },[])
-  const getPhotoFromSplash = async() =>
-  {
-    const  photoDataPromise = await fetch(`https://api.unsplash.com/photos/?client_id=${CLIENT_SECRET}`);
+    getPhotosFromSplash();
+  }, []);
+
+  const getPhotosFromSplash = async () => {
+    const photoDataPromise = await fetch(
+      `https://api.unsplash.com/photos/?client_id=${CLIENT_SECRET}`
+    );
     const photoJsonData = await photoDataPromise.json();
     const requiredData = photoJsonData.map((data) => {
       return {
@@ -38,19 +29,24 @@ function App() {
     });
     setPhotosData(requiredData);
   };
-  
+
   return (
-    <PhotoContext.Provider
-      value={{
-        photosData,
-        setPhotosData,
-      }}
-    >
-      <PhotoList />
-       
-    </PhotoContext.Provider>
-   
+    <Router>
+      <Nav />
+      <PhotoContext.Provider
+        value={{
+          photosData,
+          setPhotosData,
+        }}>
+
+          <Routes>
+            <Route path='/' element={<HomePage/>}></Route>
+            <Route path='/favorite' element={<FavoritePage/>}></Route>
+          </Routes>
+      </PhotoContext.Provider>
+    </Router>
+    
   );
 }
 
-export default App
+export default App;

@@ -1,0 +1,14 @@
+a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff !important;
+    font-family: "Noto+Sans";
+    font-weight: 600;
+    font-size: 15px;
+}
+
+a.nav-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    
+}

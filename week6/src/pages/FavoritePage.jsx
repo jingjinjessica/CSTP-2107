@@ -3,7 +3,7 @@
 const FavoritePage =() => {
     return(
         <>
-        
+         Fav
         </>
     )
 }
